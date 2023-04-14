@@ -1,44 +1,43 @@
 #include <stdio.h>
-int checkPrimeNumber(int n);
+int checkPrime(int n);
 int main() {
+  int n, i, flag = 0;
+  printf("Enter a positive integer: ");
+  scanf("%d", &n);
 
-  int n1, n2, i, flag;
-
-  printf("Enter two positive integers: ");
-  scanf("%d %d", &n1, &n2);
-
-  // swap n1 and n2 if n1 > n2
-  if (n1 > n2) {
-    n1 = n1 + n2;
-    n2 = n1 - n2;
-    n1 = n1 - n2;
-  }
-
-  printf("Prime numbers between %d and %d are: ", n1, n2);
-  for (i = n1 + 1; i < n2; ++i) {
-
-    // flag will be equal to 1 if i is prime
-    flag = checkPrimeNumber(i);
-
-    if (flag == 1) {
-      printf("%d ", i);
+  for (i = 2; i <= n / 2; ++i) {
+    // condition for i to be a prime number
+    if (checkPrime(i) == 1) {
+      // condition for n-i to be a prime number
+      if (checkPrime(n - i) == 1) {
+        printf("%d = %d + %d\n", n, i, n - i);
+        flag = 1;
+      }
     }
   }
-  
+
+  if (flag == 0)
+    printf("%d cannot be expressed as the sum of two prime numbers.", n);
+
   return 0;
 }
 
-// user-defined function to check prime number
-int checkPrimeNumber(int n) {
-  int j, flag = 1;
+// function to check prime number
+int checkPrime(int n) {
+  int i, isPrime = 1;
 
-  for (j = 2; j <= n / 2; ++j) {
-
-    if (n % j == 0) {
-      flag = 0;
-      break;
+  // 0 and 1 are not prime numbers
+  if (n == 0 || n == 1) {
+    isPrime = 0;
+  }
+  else {
+    for(i = 2; i <= n/2; ++i) {
+      if(n % i == 0) {
+        isPrime = 0;
+        break;
+      }
     }
   }
 
-  return flag;
+  return isPrime;
 }
