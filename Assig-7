@@ -15,7 +15,4 @@ void main()
     }
     printf("\nSum of all characters : %d ",sum);
 }
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
+
