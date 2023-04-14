@@ -15,5 +15,4 @@ int hcf(int n1, int n2) {
         return n1;
 }
 
-Footer
-© 2023 GitHub, Inc.
+
